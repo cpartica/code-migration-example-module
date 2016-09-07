@@ -1,0 +1,23 @@
+
+<?php $posts = $this->getPosts(); ?>
+
+<?php foreach ($posts as $post): ?>
+    <?php if ($post->getContent()) :?>
+    <div class="postWrapper">
+        <div class="postTitle">
+            <h2><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></h2>
+            <h3><?php echo $post->getCreatedAt(); ?></h3>
+        </div>
+        <div class="postContent"><?php echo $post->getContent(); ?></div>
+        <div class="postDetails">
+            <b>
+            <?php echo __('Posted'); ?>
+            <?php echo __("By"); ?> <?php echo $post->getAuthor(); ?>
+            </b>
+        </div>
+    </div>
+    <?php endif;?>
+    <br>
+<?php endforeach; ?>
+
+

@@ -1,0 +1,89 @@
+<?php
+namespace Titans\Blog\Controller;
+
+
+class Index extends \Magento\Framework\App\Action\Action
+{
+
+    /**
+     * @var \Titans\Blog\Helper\Data
+     */
+    protected $blogHelper;
+
+    /**
+     * @var \Magento\Framework\Url\Helper\Data
+     */
+    protected $frameworkHelperDataHelper;
+
+    /**
+     * @var \Titans\Blog\Model\Post
+     */
+    protected $blogPost;
+
+    /**
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     */
+    protected $scopeConfig;
+
+    /**
+     * @var \Magento\Cms\Helper\Page
+     */
+    protected $cmsPageHelper;
+
+    public function __construct(
+        \Magento\Framework\App\Action\Context $context,
+        \Titans\Blog\Helper\Data $blogHelper,
+        \Magento\Framework\Url\Helper\Data $frameworkHelperDataHelper,
+        \Titans\Blog\Model\Post $blogPost,
+        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
+        \Magento\Cms\Helper\Page $cmsPageHelper
+    ) {
+        $this->blogHelper = $blogHelper;
+        $this->frameworkHelperDataHelper = $frameworkHelperDataHelper;
+        $this->blogPost = $blogPost;
+        $this->scopeConfig = $scopeConfig;
+        $this->cmsPageHelper = $cmsPageHelper;
+        parent::__construct(
+            $context
+        );
+    }
+
+
+    public function preDispatch()
+    {
+        parent::preDispatch();
+        if (!$this->blogHelper->isEnabled()) {
+            $this->_redirectUrl($this->frameworkHelperDataHelper->getHomeUrl());
+        }
+    }
+
+    public function indexAction()
+    {
+        $this->loadLayout();
+        $this->getLayout()->getBlock('root')->setTemplate($this->blogHelper->getLayout());
+        $this->renderLayout();
+    }
+
+    public function postAction()
+    {
+        $post_id = $this->getRequest()->getParam('post_id');
+        $post = $this->blogPost->load($post_id);
+        if (!$post->getEntityId()) {
+            $this->_forward('NoRoute');
+        }
+        $this->loadLayout();
+        $this->getLayout()->getBlock('root')->setTemplate($this->blogHelper->getLayout());
+        $this->renderLayout();
+    }
+
+    public function noRouteAction($coreRoute = null)
+    {
+        $this->getResponse()->setHeader('HTTP/1.1', '404 Not Found');
+        $this->getResponse()->setHeader('Status', '404 File not found');
+
+        $pageId = $this->scopeConfig->getValue('web/default/cms_no_route', \Magento\Store\Model\ScopeInterface::SCOPE_STORE);
+        if (!$this->cmsPageHelper->renderPage($this, $pageId)) {
+            $this->_forward('defaultNoRoute');
+        }
+    }
+}

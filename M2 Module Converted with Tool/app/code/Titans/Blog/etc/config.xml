@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <blog>
+            <blog>
+                <enabled>1</enabled>
+                <title>Blog</title>
+                <footerEnabled>1</footerEnabled>
+                <layout>page/2columns-right.phtml</layout>
+                <blogcrumbs>1</blogcrumbs>
+                <useshortcontent>1</useshortcontent>
+                <dateformat>2</dateformat>
+            </blog>
+            <menu>
+                <category>1</category>
+                <tagcloud_size>10</tagcloud_size>
+            </menu>
+        </blog>
+    </default>
+</config>

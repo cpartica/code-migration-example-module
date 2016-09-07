@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <head>
+        <action method="addItem">
+            <argument name="type" xsi:type="string">skin_css</argument>
+            <argument name="name" xsi:type="string">titans_blog/css/style.css</argument>
+        </action>
+    </head>
+</page>

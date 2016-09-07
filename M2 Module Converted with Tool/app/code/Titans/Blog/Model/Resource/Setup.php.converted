@@ -1,0 +1,102 @@
+<?php
+namespace Titans\Blog\Model\Resource;
+
+
+class Setup extends \Magento\Eav\Setup\EavSetup
+{
+    /*
+     * Setup attributes for titans_blog_post entity type
+     */
+
+    /**
+     * @var \Titans\Blog\Model\Post
+     */
+    protected $blogPost;
+
+    public function __construct(
+        \Magento\Framework\Setup\ModuleDataSetupInterface $setup,
+        \Magento\Eav\Model\Entity\Setup\Context $context,
+        \Magento\Framework\App\CacheInterface $cache,
+        \Magento\Eav\Model\ResourceModel\Entity\Attribute\Group\CollectionFactory $attrGroupCollectionFactory,
+        \Titans\Blog\Model\Post $blogPost
+    ) {
+        $this->blogPost = $blogPost;
+        parent::__construct(
+            $setup,
+            $context,
+            $cache,
+            $attrGroupCollectionFactory
+        );
+    }
+
+    public function getDefaultEntities()
+    {
+        $entities = array(
+            'titans_blog_post' => array(
+                'entity_model' => 'titans_blog/post',
+                'attribute_model' => '',
+                'table' => $this->blogPost->getTableName(),
+                'attributes' => array(
+                    'title' => array(
+                        'type' => 'varchar',
+                        'backend' => '',
+                        'frontend' => '',
+                        'label' => 'Title',
+                        'input' => 'text',
+                        'class' => '',
+                        'source' => '',
+                        'global' => 0,
+                        'visible' => true,
+                        'required' => true,
+                        'user_defined' => true,
+                        'default' => '',
+                        'searchable' => false,
+                        'filterable' => false,
+                        'comparable' => false,
+                        'visible_on_front' => true,
+                        'unique' => false,
+                    ),
+                    'author' => array(
+                        'type' => 'varchar',
+                        'backend' => '',
+                        'frontend' => '',
+                        'label' => 'Author',
+                        'input' => 'text',
+                        'class' => '',
+                        'source' => '',
+                        'global' => 0,
+                        'visible' => true,
+                        'required' => true,
+                        'user_defined' => true,
+                        'default' => '',
+                        'searchable' => false,
+                        'filterable' => false,
+                        'comparable' => false,
+                        'visible_on_front' => false,
+                        'unique' => false,
+                    ),
+                    'content' => array(
+                        'type' => 'text',
+                        'backend' => '',
+                        'frontend' => '',
+                        'label' => 'Content',
+                        'input' => 'text',
+                        'class' => '',
+                        'source' => '',
+                        'global' => 0,
+                        'visible' => true,
+                        'required' => true,
+                        'user_defined' => true,
+                        'default' => '',
+                        'searchable' => false,
+                        'filterable' => false,
+                        'comparable' => false,
+                        'visible_on_front' => false,
+                        'unique' => false,
+                    ),
+                ),
+            )
+        );
+        return $entities;
+    }
+}

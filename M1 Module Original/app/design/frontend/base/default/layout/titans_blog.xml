@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem">
+                <type>skin_css</type>
+                <name>titans_blog/css/style.css</name>
+            </action>
+        </reference>
+    </default>
+    <titans_blog_index_index>
+        <reference name="content">
+            <block type="titans_blog/blog" name="blog" template="titans_blog/blog.phtml"/>
+        </reference>
+    </titans_blog_index_index>
+
+    <titans_blog_index_post>
+        <reference name="content">
+            <block type="titans_blog/post" name="post" template="titans_blog/post.phtml"/>
+        </reference>
+    </titans_blog_index_post>
+</layout>

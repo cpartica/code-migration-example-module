@@ -1,0 +1,17 @@
+
+<?php $post = $this->getPost(); ?>
+
+<div class="postWrapper">
+    <div class="postTitle">
+        <h2><?php echo $post->getTitle(); ?></h2>
+        <h3><?php echo $post->getUpdatedAt(); ?></h3>
+    </div>
+
+    <div class="postContent"><?php echo $post->getContent(); ?></div>
+    <div class="postDetails">
+        <br>
+        <?php echo __('Posted'); ?>
+        <?php echo __("By"); ?> <h4 class="poster"><?php echo $post->getAuthor(); ?></h4>
+    </div>
+</div>
+

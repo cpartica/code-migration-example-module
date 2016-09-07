@@ -1,0 +1,25 @@
+<?php $posts = $this->getPosts(); ?>
+<div id="messages_product_view">
+    <?php Mage::app()->getLayout()->getMessagesBlock()->setMessages(Mage::getSingleton('customer/session')->getMessages(true)); ?>
+    <?php echo Mage::app()->getLayout()->getMessagesBlock()->getGroupedHtml(); ?>
+</div>
+
+<?php foreach ($posts as $post): ?>
+    <?php if ($post->getContent()) :?>
+    <div class="postWrapper">
+        <div class="postTitle">
+            <h2><a href="<?php echo $post->getAddress(); ?>" ><?php echo $post->getTitle(); ?></a></h2>
+            <h3><?php echo $post->getCreatedAt(); ?></h3>
+        </div>
+        <div class="postContent"><?php echo $post->getContent(); ?></div>
+        <div class="postDetails">
+            <b>
+            <?php echo Mage::helper('titans_blog/data')->__('Posted'); ?>
+            <?php echo $this->__("By"); ?> <?php echo $post->getAuthor(); ?>
+            </b>
+        </div>
+    </div>
+    <?php endif;?>
+    <br>
+<?php endforeach; ?>
+

@@ -1,0 +1,33 @@
+<?php
+namespace Titans\Blog\Block;
+
+
+class Blog extends \Titans\Blog\Block\BlockAbstract
+{
+    public function __construct(
+        \Magento\Framework\View\Element\Template\Context $context,
+        \Titans\Blog\Helper\Data $blogHelper,
+        \Titans\Blog\Model\ResourceModel\Post\CollectionFactory $blogResourcePostCollectionFactory,
+        \Magento\Framework\App\Request\Http $request,
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        array $data = []
+    ) {
+        parent::__construct(
+            $context,
+            $blogHelper,
+            $blogResourcePostCollectionFactory,
+            $request,
+            $storeManager,
+            $data
+        );
+    }
+
+    protected function _prepareLayout()
+    {
+       if ($this->isBlogPage() && ($breadcrumbs = $this->getCrumbs())) {
+            $this->_prepareMetaData(self::$_helper);
+            $breadcrumbs->addCrumb('blog', array('label' => self::$_helper->getTitle()));
+       }
+        parent::_prepareLayout();
+    }
+}

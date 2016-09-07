@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+Titans Blog module
+-->
+<config>
+    <modules>
+        <Titans_Blog>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Titans_Blog>
+    </modules>
+</config>

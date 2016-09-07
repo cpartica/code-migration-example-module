@@ -1,0 +1,22 @@
+.postWrapper {
+    padding-bottom: 25px;
+    clear: both;
+}
+
+.postTitle {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #DDDDDD;
+    margin-bottom: 15px;
+    padding-left: 35px;
+    display: block;
+    background: url(../images/dot.jpeg) no-repeat;
+}
+
+.postContent {
+    padding-bottom: 10px;
+}
+
+.postDetails {
+
+}

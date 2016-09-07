@@ -1,0 +1,15 @@
+<?php $post = $this->getPost(); ?>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="postWrapper">
+    <div class="postTitle">
+        <h2><?php echo $post->getTitle(); ?></h2>
+        <h3><?php echo $post->getUpdatedAt(); ?></h3>
+    </div>
+
+    <div class="postContent"><?php echo $post->getContent(); ?></div>
+    <div class="postDetails">
+        <br>
+        <?php echo Mage::helper('titans_blog/data')->__('Posted'); ?>
+        <?php echo $this->__("By"); ?> <h4 class="poster"><?php echo $post->getAuthor(); ?></h4>
+    </div>
+</div>
